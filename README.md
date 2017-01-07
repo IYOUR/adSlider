@@ -1,7 +1,7 @@
 1. 项目中必须引入jquery
 2. 引入swiper.js和swiper.css文件
 3. 在需要使用的地方直接插入一个空的div标签(用class或id进行标识)
-4. 在<script>标签里进行引用和初始化。例： 文字滚动：$(".one").Adslider({}); 轮播图片：$(".two").Adslider({type:"image:});
+4. 在js里进行引用和初始化。例： 文字滚动：$(".one").Adslider({}); 轮播图片：$(".two").Adslider({type:"image:});
 5. 参数说明：
 
 
