@@ -7,7 +7,7 @@
 
 参数| 说明
 ---|---
-"type":"text"   | 类型：text/image
+"type":"text"   | 类型：text/image(默认为text类型)
 "textHeight":"30px" | 滚动文字高度
 "speed":"5px" | 文字滚动速度
  "time":2000, | 文字滚动时间
