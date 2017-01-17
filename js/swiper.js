@@ -36,9 +36,9 @@
 			    textSlider += " <div id=\"textSlider\" style=height:"+ value.textHeight +">";
 			    textSlider += "  <div id=\"voice-icon\"><\/div>";
 			    textSlider += "  <div id=\"slider-item\">";
-			    textSlider += "     <ul id=\"slider-line\">";
-			    textSlider += "        <li style=line-height:"+ value.textHeight +"><marquee scrollamount="+ value.speed +">"+ value.text[0] +"<\/marquee><\/li>";
-			    textSlider += "    <\/ul> ";
+
+			    textSlider += "<p style=line-height:"+ value.textHeight +" id=\"textContent\">"+ value.text[0] +"<\/p>";
+
 			    textSlider += "  <\/div>";
 			    textSlider += " <\/div>";
 		if(value.type == "image"){
@@ -60,7 +60,10 @@
 		}
 	    if(value.type == "text"){
           docthis.html(textSlider);
-          var anifun = setInterval(autoani,value.time);
+          //var anifun = setInterval(autoani,value.time);
+
+      		autoani();
+
         }else{
           docthis.html(imageSlider);
             var mySwiper = new Swiper('.swiper-container',{
@@ -70,21 +73,34 @@
         }
 
 		//向上滑动动画
-		var times = 0,isFirst=true;
+		var times = 0,isFirst=true,currentStateIndex=0;
 		function autoani(){
-			docthis.find("li").animate({"margin-top":-value.textHeight.replace("px","")},value.movetime,function(){
-				$(this).css("margin-top",0).appendTo("#slider-line");
-			});
-			if(times > value.text.length - 1){
-				times = 0;	
-			}
-			$("marquee").html(value.text[times]);
-			if(isFirst){
-				$("marquee").html(value.text[1]);
-				isFirst=false;
-				times = times + 1;
-			}
-			times++;
+			var speed=100;
+			currentStateIndex = (currentStateIndex + 1) % value.text.length;
+			$("#textContent").html(value.text[currentStateIndex])
+			$("#textContent").css("left",speed+"%");
+			$("#textContent").css("bottom","0px");
+			var defaultLeft= $("#textContent").offset().left;
+			var rollText = setInterval(function(){
+				speed = speed-0.5;
+				var width = $("#textContent").width();
+				var nowLeft= $("#textContent").offset().left;
+				$("#textContent").css("left",speed+"%");
+				if(defaultLeft>width){
+					if(nowLeft < -width){
+						
+						clearInterval(rollText);
+						autoani();
+
+					}
+				}else{
+					if(Math.abs(nowLeft) > width) {
+						clearInterval(rollText);
+							autoani();
+					}				
+				}
+
+			},10)     
 		}
 			
 		}	
