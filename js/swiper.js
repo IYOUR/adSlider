@@ -22,6 +22,8 @@
 			//默认参数
 			value=$.extend({
 				 "type":"text",  		//类型：text/image
+				 "textSize":"13px",		//文字大小
+				 "isScroll":true,		//是否启用文字滚动
 				 "speed":"5px",			//文字滚动速度
 				 "textHeight":"30px",   //滚动文字高度
 				 "time":2000,			//文字滚动时间
@@ -34,11 +36,9 @@
 			
 			var textSlider = "";
 			    textSlider += " <div id=\"textSlider\" style=height:"+ value.textHeight +">";
-			    textSlider += "  <div id=\"voice-icon\"><\/div>";
+			    textSlider += "  <div style=background-size:"+ value.textHeight +"  id=\"voice-icon\"><\/div>";
 			    textSlider += "  <div id=\"slider-item\">";
-
-			    textSlider += "<p style=line-height:"+ value.textHeight +" id=\"textContent\">"+ value.text[0] +"<\/p>";
-
+			    textSlider += "<p style=line-height:"+ value.textHeight +";font-size:"+ value.textSize +" id=\"textContent\">"+ value.text[0] +"<\/p>";
 			    textSlider += "  <\/div>";
 			    textSlider += " <\/div>";
 		if(value.type == "image"){
@@ -61,8 +61,12 @@
 	    if(value.type == "text"){
           docthis.html(textSlider);
           //var anifun = setInterval(autoani,value.time);
-
-      		autoani();
+          	if(value.isScroll){
+          		autoani();
+          	}else{
+          		$("#textContent").css("left","0");
+          	}
+      		
 
         }else{
           docthis.html(imageSlider);
@@ -72,7 +76,6 @@
 		  });
         }
 
-		//向上滑动动画
 		var times = 0,isFirst=true,currentStateIndex=0;
 		function autoani(){
 			var speed=100;
@@ -82,16 +85,14 @@
 			$("#textContent").css("bottom","0px");
 			var defaultLeft= $("#textContent").offset().left;
 			var rollText = setInterval(function(){
-				speed = speed-0.5;
+				speed = speed-0.2;
 				var width = $("#textContent").width();
 				var nowLeft= $("#textContent").offset().left;
 				$("#textContent").css("left",speed+"%");
 				if(defaultLeft>width){
 					if(nowLeft < -width){
-						
 						clearInterval(rollText);
 						autoani();
-
 					}
 				}else{
 					if(Math.abs(nowLeft) > width) {
