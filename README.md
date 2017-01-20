@@ -10,7 +10,8 @@
 "type":"text"   | 类型：text/image(默认为text类型)
 "textHeight":"30px" | 滚动文字高度
 "speed":"5px" | 文字滚动速度
- "time":2000, | 文字滚动时间
+"isScroll":true | 文字是否滚动
+"time":2000, | 文字滚动时间
 "movetime":500 | 滚动文字纵向切换时间
 "text":[] | 要滚动的文字内容。 例：["1超市特点:顾客至上。","2超市特点:顾客至上，质优价廉。"]
 imageInfo":[] | 要展示的图片信息。 例：[{src:"http://***.jpg",href:"#"},{src:"http://***.jpg",href:"#"}]
