@@ -82,7 +82,6 @@
 			currentStateIndex = (currentStateIndex + 1) % value.text.length;
 			$("#textContent").html(value.text[currentStateIndex])
 			$("#textContent").css("left",speed+"%");
-			$("#textContent").css("bottom","0px");
 			var defaultLeft= $("#textContent").offset().left;
 			var rollText = setInterval(function(){
 				speed = speed-0.2;
