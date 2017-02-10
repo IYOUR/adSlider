@@ -19,6 +19,7 @@
 	$.fn.extend({
 		"Adslider":function(value){
 			var docthis = this;
+				var currentStateIndex = 0;
 			//默认参数
 			value=$.extend({
 				 "type":"text",  		//类型：text/image
@@ -60,7 +61,13 @@
 		}
 	    if(value.type == "text"){
           docthis.html(textSlider);
-          //var anifun = setInterval(autoani,value.time);
+		  	for(var j=0;j<value.text.length;j++){
+				  if(value.text[j].length<20){
+
+				  }else{
+
+				  }
+			  }
           	if(value.isScroll){
           		autoani();
           	}else{
@@ -76,31 +83,50 @@
 		  });
         }
 
-		var times = 0,isFirst=true,currentStateIndex=0;
+	
 		function autoani(){
-			var speed=100;
-			currentStateIndex = (currentStateIndex + 1) % value.text.length;
-			$("#textContent").html(value.text[currentStateIndex])
-			$("#textContent").css("left",speed+"%");
-			var defaultLeft= $("#textContent").offset().left;
-			var rollText = setInterval(function(){
-				speed = speed-0.2;
-				var width = $("#textContent").width();
-				var nowLeft= $("#textContent").offset().left;
-				$("#textContent").css("left",speed+"%");
-				if(defaultLeft>width){
-					if(nowLeft < -width){
-						clearInterval(rollText);
+			var speed=0;
+			$("#textContent").html(value.text[currentStateIndex]);
+			console.log(currentStateIndex)
+			if(value.text[currentStateIndex].length<20){
+				$("#textContent").css("left",0);
+				$("#textContent").css("top","25px");
+				$("#textContent").animate({top:"0px"},1500);
+				currentStateIndex = (currentStateIndex + 1) % value.text.length;
+				setTimeout(function(){
+					//$("#textContent").css("top","50px");
+					$("#textContent").animate({top:"-=25px"},1500,function(){
+						
+						$("#textContent").css("top",0);
 						autoani();
+					});
+				},2000);
+			}else{
+				$("#textContent").css("left",speed+"%");
+				$("#textContent").css("top","25px");
+			
+				currentStateIndex = (currentStateIndex + 1) % value.text.length;
+				var defaultLeft= $("#textContent").offset().left;
+				$("#textContent").animate({top:"0px"},1500,function(){
+				$("#textContent").css("top","0px");	
+				setTimeout(function(){
+				var rollText = setInterval(function(){
+					speed = speed-0.2;
+					var width = $("#textContent").width();
+					var nowLeft= $("#textContent").offset().left;
+					console.log(width+"----|"+nowLeft)
+					$("#textContent").css("left",speed+"%");
+					if(Math.abs(nowLeft)>width){
+							clearInterval(rollText);
+					  		autoani();						
 					}
-				}else{
-					if(Math.abs(nowLeft) > width) {
-						clearInterval(rollText);
-							autoani();
-					}				
-				}
 
-			},10)     
+				},10)   
+				},1000);	
+
+				});					
+			
+			} 
 		}
 			
 		}	
