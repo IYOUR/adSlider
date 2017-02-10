@@ -61,20 +61,11 @@
 		}
 	    if(value.type == "text"){
           docthis.html(textSlider);
-		  	for(var j=0;j<value.text.length;j++){
-				  if(value.text[j].length<20){
-
-				  }else{
-
-				  }
-			  }
           	if(value.isScroll){
           		autoani();
           	}else{
           		$("#textContent").css("left","0");
           	}
-      		
-
         }else{
           docthis.html(imageSlider);
             var mySwiper = new Swiper('.swiper-container',{
@@ -83,19 +74,19 @@
 		  });
         }
 
-	
 		function autoani(){
 			var speed=0;
 			$("#textContent").html(value.text[currentStateIndex]);
 			console.log(currentStateIndex)
 			if(value.text[currentStateIndex].length<20){
+				console.log($("#textContent").width())
 				$("#textContent").css("left",0);
-				$("#textContent").css("top","25px");
-				$("#textContent").animate({top:"0px"},1500);
+				$("#textContent").css("top",value.textHeight);
+				$("#textContent").animate({top:"0px"},1000);
 				currentStateIndex = (currentStateIndex + 1) % value.text.length;
 				setTimeout(function(){
 					//$("#textContent").css("top","50px");
-					$("#textContent").animate({top:"-=25px"},1500,function(){
+					$("#textContent").animate({top:"-"+value.textHeight},1000,function(){
 						
 						$("#textContent").css("top",0);
 						autoani();
@@ -103,18 +94,17 @@
 				},2000);
 			}else{
 				$("#textContent").css("left",speed+"%");
-				$("#textContent").css("top","25px");
+				$("#textContent").css("top",value.textHeight);
 			
 				currentStateIndex = (currentStateIndex + 1) % value.text.length;
 				var defaultLeft= $("#textContent").offset().left;
-				$("#textContent").animate({top:"0px"},1500,function(){
+				$("#textContent").animate({top:"0px"},1000,function(){
 				$("#textContent").css("top","0px");	
 				setTimeout(function(){
 				var rollText = setInterval(function(){
 					speed = speed-0.2;
 					var width = $("#textContent").width();
 					var nowLeft= $("#textContent").offset().left;
-					console.log(width+"----|"+nowLeft)
 					$("#textContent").css("left",speed+"%");
 					if(Math.abs(nowLeft)>width){
 							clearInterval(rollText);
