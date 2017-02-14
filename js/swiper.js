@@ -25,7 +25,7 @@
 				 "type":"text",  		//类型：text/image
 				 "textSize":"13px",		//文字大小
 				 "isScroll":true,		//是否启用文字滚动
-				 "speed":"5px",			//文字滚动速度
+				 "speed":"5px",			//文字横向滚动速度
 				 "textHeight":"30px",   //滚动文字高度
 				 "time":2000,			//文字滚动时间
 				 "movetime":500,		//滚动文字纵向切换时间
