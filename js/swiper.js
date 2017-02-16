@@ -61,7 +61,7 @@
 		}
 	    if(value.type == "text"){
           docthis.html(textSlider);
-          	if(value.isScroll){
+          	if(value.isScroll && value.text.length>1){
           		autoani();
           	}else{
           		$("#textContent").css("left","0");
