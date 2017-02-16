@@ -64,7 +64,7 @@
           	if(value.isScroll && value.text.length>1){
           		autoani();
           	}else{
-          		$("#textContent").css("left","0");
+          		docthis.find("p").css("left","0");
           	}
         }else{
           docthis.html(imageSlider);
