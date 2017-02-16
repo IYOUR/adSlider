@@ -76,35 +76,34 @@
 
 		function autoani(){
 			var speed=0;
-			docthis.find("#textContent").html(value.text[currentStateIndex]);
-			console.log(currentStateIndex)
+			docthis.find("p").html(value.text[currentStateIndex]);
 			if(value.text[currentStateIndex].length<20){
-				docthis.find("#textContent").css("left",0);
-				docthis.find("#textContent").css("top",value.textHeight);
-				docthis.find("#textContent").animate({top:"0px"},1000);
+				docthis.find("p").css("left",0);
+				docthis.find("p").css("top",value.textHeight);
+				docthis.find("p").animate({top:"0px"},1000);
 				currentStateIndex = (currentStateIndex + 1) % value.text.length;
 				setTimeout(function(){
-					//$("#textContent").css("top","50px");
-					docthis.find("#textContent").animate({top:"-"+value.textHeight},1000,function(){
+					//$("p").css("top","50px");
+					docthis.find("p").animate({top:"-"+value.textHeight},1000,function(){
 						
-						docthis.find("#textContent").css("top",0);
+						docthis.find("p").css("top",0);
 						autoani();
 					});
 				},2000);
 			}else{
-				docthis.find("#textContent").css("left",speed+"%");
-				docthis.find("#textContent").css("top",value.textHeight);
+				docthis.find("p").css("left",speed+"%");
+				docthis.find("p").css("top",value.textHeight);
 			
 				currentStateIndex = (currentStateIndex + 1) % value.text.length;
-				var defaultLeft= docthis.find("#textContent").offset().left;
-				docthis.find("#textContent").animate({top:"0px"},1000,function(){
-				docthis.find("#textContent").css("top","0px");	
+				var defaultLeft= docthis.find("p").offset().left;
+				docthis.find("p").animate({top:"0px"},1000,function(){
+				docthis.find("p").css("top","0px");	
 				setTimeout(function(){
 				var rollText = setInterval(function(){
 					speed = speed-0.2;
-					var width = docthis.find("#textContent").width();
-					var nowLeft= docthis.find("#textContent").offset().left;
-					docthis.find("#textContent").css("left",speed+"%");
+					var width = docthis.find("p").width();
+					var nowLeft= docthis.find("p").offset().left;
+					docthis.find("p").css("left",speed+"%");
 					if(Math.abs(nowLeft)>width){
 							clearInterval(rollText);
 					  		autoani();						
