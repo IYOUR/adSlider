@@ -79,33 +79,32 @@
 			docthis.find("#textContent").html(value.text[currentStateIndex]);
 			console.log(currentStateIndex)
 			if(value.text[currentStateIndex].length<20){
-				console.log($("#textContent").width())
 				docthis.find("#textContent").css("left",0);
 				docthis.find("#textContent").css("top",value.textHeight);
 				docthis.find("#textContent").animate({top:"0px"},1000);
 				currentStateIndex = (currentStateIndex + 1) % value.text.length;
 				setTimeout(function(){
 					//$("#textContent").css("top","50px");
-					$("#textContent").animate({top:"-"+value.textHeight},1000,function(){
+					docthis.find("#textContent").animate({top:"-"+value.textHeight},1000,function(){
 						
-						$("#textContent").css("top",0);
+						docthis.find("#textContent").css("top",0);
 						autoani();
 					});
 				},2000);
 			}else{
-				$("#textContent").css("left",speed+"%");
-				$("#textContent").css("top",value.textHeight);
+				docthis.find("#textContent").css("left",speed+"%");
+				docthis.find("#textContent").css("top",value.textHeight);
 			
 				currentStateIndex = (currentStateIndex + 1) % value.text.length;
-				var defaultLeft= $("#textContent").offset().left;
-				$("#textContent").animate({top:"0px"},1000,function(){
-				$("#textContent").css("top","0px");	
+				var defaultLeft= docthis.find("#textContent").offset().left;
+				docthis.find("#textContent").animate({top:"0px"},1000,function(){
+				docthis.find("#textContent").css("top","0px");	
 				setTimeout(function(){
 				var rollText = setInterval(function(){
 					speed = speed-0.2;
-					var width = $("#textContent").width();
-					var nowLeft= $("#textContent").offset().left;
-					$("#textContent").css("left",speed+"%");
+					var width = docthis.find("#textContent").width();
+					var nowLeft= docthis.find("#textContent").offset().left;
+					docthis.find("#textContent").css("left",speed+"%");
 					if(Math.abs(nowLeft)>width){
 							clearInterval(rollText);
 					  		autoani();						
