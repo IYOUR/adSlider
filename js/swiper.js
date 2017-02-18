@@ -26,11 +26,11 @@
 				"textSize":"13px",		//文字大小
 				"isScroll":true,		//是否启用文字滚动
 				"speed":"5px",			//文字横向滚动速度
-				"textHeight":"30px",   //滚动文字高度
+				"textHeight":"30px",    //滚动文字高度
 				"time":2000,			//文字滚动时间
-				"movetime":500,		//滚动文字纵向切换时间
+				"movetime":500,			//滚动文字纵向切换时间
 				"text":[],				//要滚动的文字内容。 例：["1超市特点:顾客至上，质优价廉。","2超市特点:顾客至上，商品丰富，质优价廉。"]
-				"imageInfo":[],		//要展示的图片信息。 例：[{src:"http://***.jpg",href:"#"},{src:"http://***.jpg",href:"#"}]  
+				"imageInfo":[],			//要展示的图片信息。 例：[{src:"http://***.jpg",href:"#"},{src:"http://***.jpg",href:"#"}]  
 				"imageHeight":"auto",	//设置展示图片的高度
 				"round":false			//是否启用图片轮播(仅在多张图片时启用)
 			},value)
@@ -44,6 +44,7 @@
 			    textSlider += " <\/div>";
 		if(value.type == "image"){
 			if(value.round){
+			// 拼接图片轮播html	
 			var imageSlider = "";
 			    imageSlider += "<div class=\"swiper-container\">";
 			    imageSlider += "  <div class=\"swiper-wrapper\">";
@@ -53,6 +54,7 @@
 			    imageSlider += "  <\/div>";
 			    imageSlider += "<\/div>";
 			}else{	
+			// 拼接图片html	
 	        var imageSlider = "";
 	            imageSlider += "<div id=\"imageSlider\">";
 	            imageSlider += " <a href="+ value.imageInfo[0].href +"><img style=height:"+ value.imageHeight +" src="+ value.imageInfo[0].src +"></a>";
@@ -92,7 +94,6 @@
 			}else{
 				docthis.find("p").css("left",speed+"%");
 				docthis.find("p").css("top",value.textHeight);
-			
 				currentStateIndex = (currentStateIndex + 1) % value.text.length;
 				var defaultLeft= docthis.find("p").offset().left;
 				docthis.find("p").animate({top:"0px"},1000,function(){
@@ -107,7 +108,6 @@
 						clearInterval(rollText);
 					  	autoani();						
 					}
-
 				},10)   
 				},1000);	
 
