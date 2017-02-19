@@ -64,7 +64,8 @@
 		// 判断类型
 	    if(value.type == "text"){
           docthis.html(textSlider);
-          	if(value.isScroll){
+		  // 判断是否需要滚动
+          	if(value.isScroll && value.text.length>1){
           		autoani();
           	}else{
           		docthis.find("p").css("left","0");
